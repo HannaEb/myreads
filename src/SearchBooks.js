@@ -6,7 +6,7 @@ import Book from './Book';
 class SearchBooks extends Component {
   state = {
       searchTerm: '',
-      books: []
+      foundBooks: []
   }
 
   handleChange = searchTerm => {
@@ -22,17 +22,22 @@ class SearchBooks extends Component {
 
   search = searchTerm => {
       BooksAPI.search(searchTerm)
-        .then(books => {
+        .then(foundBooks => {
             this.setState(() => ({
-                books
+                foundBooks
             }))
         })
   }
 
   render() {
     
-    const { searchTerm, books } = this.state;
-    const { onUpdateBook } = this.props;
+    const { searchTerm, foundBooks } = this.state;
+    const { books, onUpdateBook } = this.props;
+
+    foundBooks.forEach(foundBook => {
+      let duplicate = books.find(book => book.id === foundBook.id);
+      foundBook.shelf = duplicate ? duplicate.shelf : 'none';
+    })
 
     return (
       <div className="search-books">
@@ -55,11 +60,11 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map(book => (
-              <li key={book.id}>
-                <Book book={book} onUpdateBook={onUpdateBook} />
-              </li>
-            ))} 
+            {foundBooks.map(foundBook => (
+                <li key={foundBook.id}>
+                  <Book book={foundBook} onUpdateBook={onUpdateBook} />
+                </li>
+            ))}  
           </ol>
         </div>
       </div>
