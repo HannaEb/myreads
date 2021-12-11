@@ -6,7 +6,8 @@ import Book from './Book';
 class SearchBooks extends Component {
   state = {
       searchTerm: '',
-      foundBooks: []
+      foundBooks: [],
+      isError: false
   }
 
   handleChange = searchTerm => {
@@ -21,12 +22,20 @@ class SearchBooks extends Component {
   }
 
   search = searchTerm => {
-      BooksAPI.search(searchTerm)
-        .then(foundBooks => {
-            this.setState(() => ({
-                foundBooks
-            }))
+    BooksAPI.search(searchTerm)
+    .then(foundBooks => {
+      if(!foundBooks || foundBooks.error) {
+        this.setState({
+          foundBooks: [],
+          isError: true
         })
+      } else {
+        this.setState({
+          foundBooks,
+          isError: false
+        })
+      }
+    })
   }
 
   render() {
@@ -60,7 +69,8 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {foundBooks.map(foundBook => (
+            {this.state.isError ? <p>Sorry, no books found</p>
+              : foundBooks.map(foundBook => (
                 <li key={foundBook.id}>
                   <Book book={foundBook} onUpdateBook={onUpdateBook} />
                 </li>
