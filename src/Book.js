@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends Component {
   
@@ -24,6 +25,11 @@ class Book extends Component {
       </div>
     )
   }
+}
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  onUpdateBook: PropTypes.func.isRequired
 }
 
 export default Book;
