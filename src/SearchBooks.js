@@ -5,6 +5,11 @@ import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 
 class SearchBooks extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
+  }
+
   state = {
       searchTerm: '',
       foundBooks: [],
@@ -81,11 +86,6 @@ class SearchBooks extends Component {
       </div>
     )
   }
-}
-
-SearchBooks.propTypes = {
-  books: PropTypes.array.isRequired,
-  onUpdateBook: PropTypes.func.isRequired
 }
 
 export default SearchBooks;

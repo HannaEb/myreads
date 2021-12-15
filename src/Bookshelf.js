@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 class Bookshelf extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onUpdateBook: PropTypes.func.isRequired,
+    shelf: PropTypes.string.isRequired
+  } 
+
   render() {
 
     const { books, onUpdateBook, shelf } = this.props;
@@ -23,11 +29,5 @@ class Bookshelf extends Component {
     )
   }
 }
-
-Bookshelf.propTypes = {
-  books: PropTypes.array.isRequired,
-  onUpdateBook: PropTypes.func.isRequired,
-  shelf: PropTypes.string.isRequired
-} 
 
 export default Bookshelf;

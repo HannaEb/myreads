@@ -2,6 +2,11 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 
 class ShelfChanger extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
+  }
+
   render() {
 
     const { book, onUpdateBook } = this.props;
@@ -18,11 +23,6 @@ class ShelfChanger extends Component {
       </div>
     )
   }
-}
-
-ShelfChanger.propTypes = {
-    book: PropTypes.object.isRequired,
-    onUpdateBook: PropTypes.func.isRequired
 }
 
 export default ShelfChanger;

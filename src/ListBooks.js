@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import Bookshelf from './Bookshelf';
 
 class ListBooks extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    onUpdateBook: PropTypes.func.isRequired
+  } 
+
   render() {
 
     const { books, onUpdateBook } = this.props;
@@ -45,10 +50,5 @@ class ListBooks extends Component {
     )
   }
 }
-
-ListBooks.propTypes = {
-  books: PropTypes.array.isRequired,
-  onUpdateBook: PropTypes.func.isRequired
-} 
 
 export default ListBooks;
