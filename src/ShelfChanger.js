@@ -21,7 +21,7 @@ class ShelfChanger extends Component {
 }
 
 ShelfChanger.propTypes = {
-    book: PropTypes.array.isRequired,
+    book: PropTypes.object.isRequired,
     onUpdateBook: PropTypes.func.isRequired
 }
 
