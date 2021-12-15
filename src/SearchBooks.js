@@ -85,7 +85,7 @@ class SearchBooks extends Component {
 
 SearchBooks.propTypes = {
   books: PropTypes.array.isRequired,
-  onUpdateBooks: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired
 }
 
 export default SearchBooks;
