@@ -29,20 +29,27 @@ class SearchBooks extends Component {
   }
 
   search = debounce(searchTerm => {
-    BooksAPI.search(searchTerm.trim())
-    .then(foundBooks => {
-      if(!foundBooks || foundBooks.error) {
-        this.setState({
-          foundBooks: [],
-          isError: true
-        })
-      } else {
-        this.setState({
-          foundBooks,
-          isError: false
-        })
-      }
-    })
+    if (searchTerm === '') {
+      this.setState({
+        foundBooks: [],
+        isError: false
+      })
+    } else {
+      BooksAPI.search(searchTerm.trim())
+      .then(foundBooks => {
+        if(!foundBooks || foundBooks.error) {
+          this.setState({
+            foundBooks: [],
+            isError: true
+          })
+        } else {
+          this.setState({
+            foundBooks,
+            isError: false
+          })
+        }
+      })
+    }
   }, 500)
 
   render() {
