@@ -72,6 +72,10 @@ body, .app {
   background-color: rgb(0, 102, 0);
 }
 
+.shelves-grid {
+  list-style-type: none;
+}
+
 
 /* search page */
 

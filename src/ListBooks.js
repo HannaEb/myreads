@@ -36,7 +36,7 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <ol>
+          <ol className="shelves-grid">
             {SHELVES.map(shelf => {
               const shelfBooks = books.filter(book => book.shelf === shelf.id);
               return (
