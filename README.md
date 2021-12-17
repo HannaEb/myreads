@@ -2,6 +2,8 @@
 
 ## About
 
+![](public/screenshot.png)
+
 ## Motivation
 
 This project is part of [Udacity's React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019). 
