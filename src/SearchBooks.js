@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 
@@ -23,12 +24,12 @@ class SearchBooks extends Component {
 
   updateSearchTerm = searchTerm => {
       this.setState(() => ({
-          searchTerm: searchTerm.trim()
+          searchTerm: searchTerm
       }))
   }
 
-  search = searchTerm => {
-    BooksAPI.search(searchTerm)
+  search = debounce(searchTerm => {
+    BooksAPI.search(searchTerm.trim())
     .then(foundBooks => {
       if(!foundBooks || foundBooks.error) {
         this.setState({
@@ -42,7 +43,7 @@ class SearchBooks extends Component {
         })
       }
     })
-  }
+  }, 500)
 
   render() {
     
