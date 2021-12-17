@@ -36,14 +36,16 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <div>
+          <ol>
             {SHELVES.map(shelf => {
               const shelfBooks = books.filter(book => book.shelf === shelf.id);
               return (
-                <Bookshelf books={shelfBooks} onUpdateBook={onUpdateBook} shelf={shelf.title}/>
+                <li key={shelf.id}>
+                  <Bookshelf books={shelfBooks} onUpdateBook={onUpdateBook} shelf={shelf.title}/>
+                </li>
               )
             })}
-          </div>
+          </ol>
         </div>
         <div>
           <Link to='/search' className="open-search">Add a book</Link>
