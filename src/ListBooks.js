@@ -13,6 +13,8 @@ class ListBooks extends Component {
 
     const { books, onUpdateBook } = this.props;
 
+    //Creating the SHELVES constant was a suggested solution provided by Arun in the Knowledge forum
+
     const SHELVES = [
       {
         title: 'Currently Reading',
