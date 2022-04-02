@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ShelfChanger from './ShelfChanger';
 
-class Book extends Component {  
+class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     onUpdateBook: PropTypes.func.isRequired
@@ -15,7 +15,7 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: book.imageLinks ? `url(${book.imageLinks.smallThumbnail})` : '' }}></div>
+          <div className="book-cover" style={{ backgroundImage: book.imageLinks ? `url(${book.imageLinks.smallThumbnail})` : '' }}></div>
           <ShelfChanger book={book} onUpdateBook={onUpdateBook} />
         </div>
         <div className="book-title">{book.title}</div>

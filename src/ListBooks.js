@@ -7,13 +7,11 @@ class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
     onUpdateBook: PropTypes.func.isRequired
-  } 
+  }
 
   render() {
 
     const { books, onUpdateBook } = this.props;
-
-    //Creating the SHELVES constant was a suggested solution provided by Arun in the Knowledge forum
 
     const SHELVES = [
       {
@@ -33,7 +31,7 @@ class ListBooks extends Component {
     return (
    	  <div className="list-books">
         <div className="list-books-title">
-          <h1>MyReads</h1>
+          <h1>My Reads</h1>
         </div>
         <div className="list-books-content">
           <ol className="shelves-grid">

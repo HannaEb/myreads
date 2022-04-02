@@ -7,21 +7,22 @@ body {
 }
 
 body, .app {
-  background: white;
+  background: var(--color-white);
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: var(--color-green);
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white;
+  color: var(--color-white);
 }
 
 .list-books-content {
@@ -40,7 +41,7 @@ body, .app {
 }
 
 .bookshelf-title {
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid var(--color-grey);
 }
 
 .bookshelf-books {
@@ -58,7 +59,7 @@ body, .app {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: var(--color-green);
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -69,7 +70,7 @@ body, .app {
 }
 
 .open-search button:hover {
-  background-color: rgb(0, 102, 0);
+  background: var(--color-grey);
 }
 
 .shelves-grid {
@@ -91,7 +92,7 @@ body, .app {
 
 .search-books-input-wrapper {
   flex: 1;
-  background: #e9e;
+  background: var(--color-grey);
 }
 
 .search-books-bar input {
@@ -118,7 +119,7 @@ body, .app {
 }
 
 button:active {
-  border: red;
+  border: var(--color-grey);
   outline: none;
 }
 
@@ -130,8 +131,6 @@ button:active {
 
 .books-grid {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -139,7 +138,6 @@ button:active {
 
 .books-grid p {
   font-size: 1.25em;
-  color: grey;
 }
 
 .books-grid li {
@@ -198,6 +196,8 @@ button:active {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+  width: 128px;
+  height: 193px;
 }
 
 .book-cover-title {
