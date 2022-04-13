@@ -2,13 +2,13 @@
 
 ## About
 
-A virtual bookcase that allows users to store books and track what they are reading. Using the provided API, users can search for books and add them to a bookshelf, and also move them from one shelf to another. 
+A virtual bookcase that allows users to store books and track what they are reading. Using the provided API, users can search for books and add them to a bookshelf, and also move them from one shelf to another.
 
 ![](public/screenshot.png)
 
 ## Motivation
 
-This project is part of [Udacity's React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019). Starter files were provided. 
+This project is part of [Udacity's React Nanodegree program](https://www.udacity.com/course/react-nanodegree--nd019). Starter files were provided.
 
 ## Technologies
 
@@ -27,11 +27,11 @@ Then open [http://localhost:3000](http://localhost:3000) to view the application
 
 ## Testing
 
-Not yet implemented. 
+Not yet implemented.
 
 ## Progress
 
-Test suit needs to be added. 
+Test suit needs to be added.
 
 ## Author
 
