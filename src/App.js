@@ -6,14 +6,12 @@ import SearchBooks from "./components/SearchBooks";
 import "./App.css";
 
 const BooksApp = () => {
-  const [state, setState] = useState({
-    books: [],
-  });
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const books = await BooksAPI.getAll();
-      setState({ books });
+      const newBooks = await BooksAPI.getAll();
+      setBooks(newBooks);
     };
 
     fetchBooks().catch(console.error);
@@ -22,11 +20,10 @@ const BooksApp = () => {
   const updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then((res) => {
       book.shelf = shelf;
-      setState((currentState) => ({
-        books: currentState.books
-          .filter((currentBook) => currentBook.id !== book.id)
-          .concat(book),
-      }));
+
+      setBooks(
+        books.filter((currentBook) => currentBook.id !== book.id).concat(book)
+      );
     });
   };
 
@@ -35,13 +32,11 @@ const BooksApp = () => {
       <Routes>
         <Route
           path="/"
-          element={<ListBooks books={state.books} onUpdateBook={updateBook} />}
+          element={<ListBooks books={books} onUpdateBook={updateBook} />}
         />
         <Route
           path="/search"
-          element={
-            <SearchBooks books={state.books} onUpdateBook={updateBook} />
-          }
+          element={<SearchBooks books={books} onUpdateBook={updateBook} />}
         />
       </Routes>
     </div>
