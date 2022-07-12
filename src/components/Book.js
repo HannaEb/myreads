@@ -1,36 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
 
-class Book extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    onUpdateBook: PropTypes.func.isRequired,
-  };
+const Book = (props) => {
+  const { book, onUpdateBook } = props;
 
-  render() {
-    const { book, onUpdateBook } = this.props;
-
-    return (
-      <div className="book">
-        <div className="book-top">
-          <div
-            className="book-cover"
-            style={{
-              backgroundImage: book.imageLinks
-                ? `url(${book.imageLinks.smallThumbnail})`
-                : "",
-            }}
-          ></div>
-          <ShelfChanger book={book} onUpdateBook={onUpdateBook} />
-        </div>
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">
-          {book.authors && book.authors.join(", ")}
-        </div>
+  return (
+    <div className="book">
+      <div className="book-top">
+        <div
+          className="book-cover"
+          style={{
+            backgroundImage: book.imageLinks
+              ? `url(${book.imageLinks.smallThumbnail})`
+              : "",
+          }}
+        ></div>
+        <ShelfChanger book={book} onUpdateBook={onUpdateBook} />
       </div>
-    );
-  }
-}
+      <div className="book-title">{book.title}</div>
+      <div className="book-authors">
+        {book.authors && book.authors.join(", ")}
+      </div>
+    </div>
+  );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  onUpdateBook: PropTypes.func.isRequired,
+};
 
 export default Book;
