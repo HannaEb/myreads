@@ -20,12 +20,13 @@ const SearchBooks = (props) => {
     setSearchTerm(searchTerm);
   };
 
+  // Search when user has finished typing
   const search = debounce((searchTerm) => {
     if (searchTerm === "") {
       setFoundBooks([]);
       setIsError(false);
     } else {
-      BooksAPI.search(searchTerm.trim()).then((foundBooks) => {
+      BooksAPI.search(searchTerm.trim())((foundBooks) => {
         if (!foundBooks || foundBooks.error) {
           setFoundBooks([]);
           setIsError(true);
@@ -37,6 +38,7 @@ const SearchBooks = (props) => {
     }
   }, 500);
 
+  // Assign correct shelves to search results
   foundBooks.forEach((foundBook) => {
     let duplicate = books.find((book) => book.id === foundBook.id);
     foundBook.shelf = duplicate ? duplicate.shelf : "none";
