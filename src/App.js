@@ -18,13 +18,12 @@ const BooksApp = () => {
   }, []);
 
   const updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((res) => {
-      book.shelf = shelf;
+    BooksAPI.update(book, shelf);
+    book.shelf = shelf;
 
-      setBooks(
-        books.filter((currentBook) => currentBook.id !== book.id).concat(book)
-      );
-    });
+    setBooks(
+      books.filter((currentBook) => currentBook.id !== book.id).concat(book)
+    );
   };
 
   return (
