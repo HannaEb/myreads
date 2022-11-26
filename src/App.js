@@ -24,13 +24,24 @@ const BooksApp = () => {
     });
   }, []);
 
-  const updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-    book.shelf = shelf;
-
-    setBooks(
-      books.filter((currentBook) => currentBook.id !== book.id).concat(book)
-    );
+  const updateBook = async (book, shelf) => {
+    try {
+      const updatedBooks = await BooksAPI.update(book, shelf);
+      if (updatedBooks.error) {
+        setIsError(true);
+        setMessage("Sorry, something went wrong");
+      } else {
+        book.shelf = shelf;
+        setBooks(
+          books.filter((currentBook) => currentBook.id !== book.id).concat(book)
+        );
+        setIsError(false);
+        setMessage("");
+      }
+    } catch (err) {
+      setIsError(true);
+      setMessage("Sorry, something went wrong");
+    }
   };
 
   return (
