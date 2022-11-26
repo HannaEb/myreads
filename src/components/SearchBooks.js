@@ -10,6 +10,7 @@ const SearchBooks = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [foundBooks, setFoundBooks] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleChange = (searchTerm) => {
     updateSearchTerm(searchTerm);
@@ -21,20 +22,28 @@ const SearchBooks = (props) => {
   };
 
   // Search when user has finished typing
-  const search = debounce((searchTerm) => {
+  const search = debounce(async (searchTerm) => {
     if (searchTerm === "") {
       setFoundBooks([]);
       setIsError(false);
-    } else {
-      BooksAPI.search(searchTerm.trim())((foundBooks) => {
-        if (!foundBooks || foundBooks.error) {
-          setFoundBooks([]);
-          setIsError(true);
-        } else {
-          setFoundBooks(foundBooks);
-          setIsError(false);
-        }
-      });
+      setMessage("");
+      return;
+    }
+    try {
+      const foundBooks = await BooksAPI.search(searchTerm.trim());
+      if (!foundBooks || foundBooks.error) {
+        setFoundBooks([]);
+        setIsError(true);
+        setMessage("Sorry, no books found");
+      } else {
+        setFoundBooks(foundBooks);
+        setIsError(false);
+        setMessage("");
+      }
+    } catch (err) {
+      setFoundBooks([]);
+      setIsError(true);
+      setMessage("Sorry, something went wrong");
     }
   }, 500);
 
@@ -62,7 +71,7 @@ const SearchBooks = (props) => {
       <div className="search-books-results">
         <ol className="books-grid">
           {isError ? (
-            <p>Sorry, no books found</p>
+            <p>{message}</p>
           ) : (
             foundBooks.map((foundBook) => (
               <li key={foundBook.id}>
