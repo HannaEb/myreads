@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Bookshelf from "./Bookshelf";
 
 const ListBooks = (props) => {
-  const { books, onUpdateBook } = props;
+  const { books, onUpdateBook, isError, message } = props;
 
   const SHELVES = [
     {
@@ -27,20 +27,26 @@ const ListBooks = (props) => {
         <h1>My Reads</h1>
       </div>
       <div className="list-books-content">
-        <ol className="shelves-grid">
-          {SHELVES.map((shelf) => {
-            const shelfBooks = books.filter((book) => book.shelf === shelf.id);
-            return (
-              <li key={shelf.id}>
-                <Bookshelf
-                  books={shelfBooks}
-                  onUpdateBook={onUpdateBook}
-                  shelf={shelf.title}
-                />
-              </li>
-            );
-          })}
-        </ol>
+        {isError ? (
+          <p className="message">{message}</p>
+        ) : (
+          <ol className="shelves-grid">
+            {SHELVES.map((shelf) => {
+              const shelfBooks = books.filter(
+                (book) => book.shelf === shelf.id
+              );
+              return (
+                <li key={shelf.id}>
+                  <Bookshelf
+                    books={shelfBooks}
+                    onUpdateBook={onUpdateBook}
+                    shelf={shelf.title}
+                  />
+                </li>
+              );
+            })}
+          </ol>
+        )}
       </div>
       <div>
         <Link to="/search" className="open-search">

@@ -7,14 +7,21 @@ import "./App.css";
 
 const BooksApp = () => {
   const [books, setBooks] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const fetchBooks = async () => {
       const newBooks = await BooksAPI.getAll();
       setBooks(newBooks);
+      setIsError(false);
+      setMessage("");
     };
 
-    fetchBooks().catch(console.error);
+    fetchBooks().catch((err) => {
+      setIsError(true);
+      setMessage("Sorry, something went wrong");
+    });
   }, []);
 
   const updateBook = (book, shelf) => {
@@ -31,7 +38,14 @@ const BooksApp = () => {
       <Routes>
         <Route
           path="/"
-          element={<ListBooks books={books} onUpdateBook={updateBook} />}
+          element={
+            <ListBooks
+              books={books}
+              onUpdateBook={updateBook}
+              isError={isError}
+              message={message}
+            />
+          }
         />
         <Route
           path="/search"
