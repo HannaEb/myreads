@@ -141,9 +141,9 @@ button:active {
   flex-wrap: wrap;
 }
 
-.books-grid p {
+/* .books-grid p {
   font-size: 1.25rem;
-}
+} */
 
 .books-grid li {
   padding: 1rem 1.5rem;
@@ -211,4 +211,13 @@ button:active {
   padding: 2rem 1rem 0;
   text-align: center;
   font-size: 1.3rem;
+}
+
+/* error message */
+
+.message {
+  font-size: 2rem;
+  color: var(--color-grey-dark);
+  text-align: center;
+  padding-top: 2rem;
 }

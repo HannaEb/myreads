@@ -69,17 +69,17 @@ const SearchBooks = (props) => {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid">
-          {isError ? (
-            <p>{message}</p>
-          ) : (
-            foundBooks.map((foundBook) => (
+        {isError ? (
+          <p className="message">{message}</p>
+        ) : (
+          <ol className="books-grid">
+            {foundBooks.map((foundBook) => (
               <li key={foundBook.id}>
                 <Book book={foundBook} onUpdateBook={onUpdateBook} />
               </li>
-            ))
-          )}
-        </ol>
+            ))}
+          </ol>
+        )}
       </div>
     </div>
   );
